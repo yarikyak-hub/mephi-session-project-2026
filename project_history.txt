@@ -1,0 +1,54 @@
+   40  nmcli con show
+   41  ip link show
+   42  nmcli con add type ethernet con-name static-enp0s3 ifname enp0s3 ipv4.addresses 192.168.1.100/24 ipv4.gateway 192.168.1.1 ipv4.dns 8.8.8.8 ipv4.method manual
+   43  hostnamectl set-hostname mephi-2026.domain.local
+
+   52  nmcli con up static-enp0s3
+
+   55  ip route
+   56  ping -c3 8.8.8.8
+   57  ping -c3 192.168.1.1
+   58  lsblk
+
+   62  nano /etc/pam.d/login
+   63  nano /etc/pam.d/sshd
+
+   69  login
+
+   72  systemctl status sshd
+   73  systemctl start sshd
+   74  ssh root@localhost
+   75  ssh user1@localhost
+
+   78  systemctl restart sshd
+   79  ssh root@localhost
+   80  ssh user1@localhost
+   81  reboot
+
+  103  sudo -i -u mephi-admin
+    # Это история пользователя mephi-admin о создании файла index.html  
+    2  echo 'Hello from Student: M2551011' > /data/mephi-web/index.html
+    3  cat /data/mephi-web/index.html
+    4  curl http://localhost
+    5  curl http://192.168.1.100
+    6  exit
+
+  104  curl http://192.168.1.100
+  105  curl http://localhost
+
+  108  history > ~/project_history.txt
+  # Часть команд, по неясным для меня причинам, не сохранилась в истории (я проверил root и остальных пользователей), 
+  # поэтому я выполнил доп.проверку что все выполнено
+  144  rpm -q nginx tcpdump libcap-ng-utils
+  145  ls /tmp/tcpdump-*.rpm 2>/dev/null
+
+  152  blkid /dev/sdb1
+  153  cat /tmp/nginx_recent_logs.txt
+
+  160  id mephi-admin
+  161  getent group mephi-devs
+  162  ls -ld /data/mephi-web
+  163  getenforce
+  164  ls -Z /data/mephi-web
+
+  166  sudo -u mephi-admin tcpdump --help
